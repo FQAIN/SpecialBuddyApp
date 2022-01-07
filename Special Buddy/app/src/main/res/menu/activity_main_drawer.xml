@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:id="@+id/menuT" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_my_profile"
+            android:icon="@drawable/ic_my_profile"
+            android:contentDescription="@string/my_profile"
+            android:title="@string/my_profile" />
+        <item
+            android:id="@+id/nav_contact_list"
+            android:icon="@drawable/ic_contact_list"
+            android:contentDescription="@string/contacts_list"
+            android:title="@string/contacts_list" />
+        <item
+            android:id="@+id/nav_find_buddy"
+            android:icon="@drawable/ic_heart"
+            android:contentDescription="@string/find_a_buddy"
+            android:title="@string/find_a_buddy" />
+        <item
+            android:id="@+id/nav_buddy_request"
+            android:icon="@drawable/ic_baseline_access_time_24"
+            android:contentDescription="@string/buddies_requests_and_suggestions"
+            android:title="@string/buddies_requests_and_suggestions" />
+    </group>
+
+    <group android:id="@+id/menuB" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_accessability"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:contentDescription="@string/enable_accessibility_settings"
+            android:title="@string/enable_accessibility_settings" />
+        <item
+            android:id="@+id/nav_file_complain"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:contentDescription="@string/file_complaint"
+            android:title="@string/file_complaint" />
+        <item
+            android:id="@+id/nav_faq"
+            android:icon="@drawable/ic_baseline_cloud_upload_24"
+            android:contentDescription="@string/frequently_asked_questions"
+            android:title="@string/frequently_asked_questions" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_baseline_delete_24"
+            android:contentDescription="@string/logout"
+            android:title="@string/logout" />
+    </group>
+</menu>
