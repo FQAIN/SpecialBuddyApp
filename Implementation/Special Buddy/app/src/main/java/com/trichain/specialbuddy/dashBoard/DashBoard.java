@@ -9,21 +9,18 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.navigation.NavigationView;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,9 +32,9 @@ import com.trichain.specialbuddy.R;
 import com.trichain.specialbuddy.auth.LoginActivity;
 import com.trichain.specialbuddy.chat.data.SharedPreferenceHelper;
 import com.trichain.specialbuddy.chat.data.StaticConfig;
-import com.trichain.specialbuddy.chat.model.User;
+import com.trichain.specialbuddy.chat.data.User;
 import com.trichain.specialbuddy.chat.ui.UserProfileFragment;
-import com.trichain.specialbuddy.chat.util.ImageUtils;
+import com.trichain.specialbuddy.util.ImageUtils;
 import com.trichain.specialbuddy.databinding.ActivityDashBoardBinding;
 //import com.trichain.specialbuddy.dashBoard.databinding.ActivityDashBoardBinding;
 
@@ -62,13 +59,7 @@ public class DashBoard extends AppCompatActivity {
         setContentView(b.getRoot());
 
         setSupportActionBar(b.appBarDashBoard.toolbar);
-//        binding.appBarDashBoard.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
         initFirebase();
         DrawerLayout drawer = b.drawerLayout;
         NavigationView navigationView = b.navView;
@@ -86,22 +77,10 @@ public class DashBoard extends AppCompatActivity {
     }
 
     private void stUpUI() {
-//        b.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                if (item.getItemId()==R.id.nav_logout){
-//                    Log.e(TAG, "onClick: logout" );
-//                    FirebaseAuth.getInstance().signOut();
-//                    DashBoard.this.finish();
-//                    return true;
-//                }
-//                return true;
-//            }
-//        });
+
     }
 
     private void initFirebase() {
-        //Khoi tao thanh phan de dang nhap, dang ky
         mAuth = FirebaseAuth.getInstance();
 
         user = mAuth.getCurrentUser();
@@ -128,7 +107,6 @@ public class DashBoard extends AppCompatActivity {
                     startActivity(new Intent(DashBoard.this, LoginActivity.class));
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-                // ...
             }
         };
     }
@@ -141,7 +119,6 @@ public class DashBoard extends AppCompatActivity {
     private ValueEventListener userListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-//            Log.e(TAG, "onDataChange: "+dataSnapshot.getValue().toString() );
             myAccount = dataSnapshot.getValue(User.class);
 
             ((TextView)b.navView.getHeaderView(0).findViewById(R.id.nameTv)).setText(myAccount.name);

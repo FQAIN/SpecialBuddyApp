@@ -2,46 +2,31 @@ package com.trichain.specialbuddy.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.trichain.specialbuddy.R;
 import com.trichain.specialbuddy.chat.data.StaticConfig;
-import com.trichain.specialbuddy.chat.model.ListFriend;
-import com.trichain.specialbuddy.chat.ui.ChatActivity;
-//import com.trichain.specialbuddy.chat.ui.FriendsFragment;
+import com.trichain.specialbuddy.chat.data.ListFriend;
 import com.trichain.specialbuddy.dashBoard.BuddiesRequestsSugFragment;
 import com.trichain.specialbuddy.databinding.ItemAddBuddyBinding;
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 import com.yarolegovich.lovelydialog.LovelyProgressDialog;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

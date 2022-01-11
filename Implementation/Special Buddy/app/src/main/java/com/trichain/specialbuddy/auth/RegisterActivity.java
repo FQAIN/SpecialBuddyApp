@@ -35,7 +35,6 @@ import androidx.databinding.DataBindingUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -178,11 +177,9 @@ public class RegisterActivity extends AppCompatActivity implements LocationListe
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-//                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-//                            updateUI(null);
                         }
                     }
                 });
@@ -261,8 +258,6 @@ public class RegisterActivity extends AppCompatActivity implements LocationListe
         switch (requestCode) {
             case MY_PERMISSION_REQUEST_CODE_PHONE_STATE: {
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-//                    permissionCheck(false);
                     return;
                 } else {
                     requestLocation();
@@ -283,7 +278,6 @@ public class RegisterActivity extends AppCompatActivity implements LocationListe
                 @Override
                 public void run() {
                     if (isLocationEnabled() && !hasSTartedS[0]) {
-//                        ForegroundServiceLauncher.getInstance().startService(StatisticsActivity.this);
                         hasSTartedS[0] = true;
                     } else {
                         new Handler().postDelayed(this::run, 1000);

@@ -16,23 +16,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.trichain.specialbuddy.R;
 import com.trichain.specialbuddy.chat.data.StaticConfig;
-import com.trichain.specialbuddy.chat.model.ListFriend;
+import com.trichain.specialbuddy.chat.data.ListFriend;
 import com.trichain.specialbuddy.chat.ui.ChatActivity;
-import com.trichain.specialbuddy.dashBoard.ui.contacts.ContactsFragment;
-import com.yarolegovich.lovelydialog.LovelyInfoDialog;
+import com.trichain.specialbuddy.dashBoard.ContactsFragment;
 import com.yarolegovich.lovelydialog.LovelyProgressDialog;
 
 import java.text.SimpleDateFormat;
@@ -114,37 +109,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                     }
                 });
 
-//        ((View) holder.txtName.getParent().getParent().getParent())
-//                .setOnLongClickListener(new View.OnLongClickListener() {
-//                    @Override
-//                    public boolean onLongClick(View view) {
-//                        String friendName = (String)holder.txtName.getText();
-//
-//                        new AlertDialog.Builder(context)
-//                                .setTitle("Delete Friend")
-//                                .setMessage("Are you sure want to delete "+friendName+ "?")
-//                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialogInterface, int i) {
-//                                        dialogInterface.dismiss();
-//                                        final String idFriendRemoval = listFriend.getListFriend().get(position).id;
-//                                        dialogWaitDeleting.setTitle("Deleting...")
-//                                                .setCancelable(false)
-//                                                .setTopColorRes(R.color.colorAccent)
-//                                                .show();
-//                                        deleteFriend(idFriendRemoval);
-//                                    }
-//                                })
-//                                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialogInterface, int i) {
-//                                        dialogInterface.dismiss();
-//                                    }
-//                                }).show();
-//
-//                        return true;
-//                    }
-//                });
 
 
         if (listFriend.getListFriend().get(position).message.text.length() > 0) {
@@ -234,7 +198,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     if (dataSnapshot.getValue() != null && dataSnapshot.getKey().equals("isOnline")) {
                         Log.d("FriendsFragment add " + id, (boolean) dataSnapshot.getValue() + "");
-                        listFriend.getListFriend().get(position).status.isOnline = (boolean) dataSnapshot.getValue();
                         notifyDataSetChanged();
                     }
                 }
@@ -243,7 +206,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                     if (dataSnapshot.getValue() != null && dataSnapshot.getKey().equals("isOnline")) {
                         Log.d("FriendsFragment change " + id, (boolean) dataSnapshot.getValue() + "");
-                        listFriend.getListFriend().get(position).status.isOnline = (boolean) dataSnapshot.getValue();
                         notifyDataSetChanged();
                     }
                 }
@@ -266,11 +228,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             mapQueryOnline.get(id).addChildEventListener(mapChildListenerOnline.get(id));
         }
 
-        if (listFriend.getListFriend().get(position).status.isOnline) {
-            holder.avata.setBorderWidth(10);
-        } else {
-            holder.avata.setBorderWidth(0);
-        }
+
     }
 
     @Override

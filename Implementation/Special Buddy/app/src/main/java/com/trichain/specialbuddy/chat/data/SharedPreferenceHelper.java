@@ -3,9 +3,6 @@ package com.trichain.specialbuddy.chat.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.trichain.specialbuddy.chat.model.User;
-
-
 
 public class SharedPreferenceHelper {
     private static SharedPreferenceHelper instance = null;

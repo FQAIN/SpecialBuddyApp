@@ -42,7 +42,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".accessability.MyAccessibleClass"
+            android:name=".MyAccessibleClass"
             android:exported="true"
             android:label="Accessibility"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
@@ -68,7 +68,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".dashBoard.ui.profile.EditProfileActivity"
+            android:name=".dashBoard.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".dashBoard.DashBoard"

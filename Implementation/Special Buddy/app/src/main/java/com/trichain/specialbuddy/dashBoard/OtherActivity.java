@@ -1,12 +1,5 @@
 package com.trichain.specialbuddy.dashBoard;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -25,6 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -37,10 +37,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.trichain.specialbuddy.R;
 import com.trichain.specialbuddy.chat.data.SharedPreferenceHelper;
-import com.trichain.specialbuddy.chat.model.Configuration;
-import com.trichain.specialbuddy.chat.model.User;
-import com.trichain.specialbuddy.chat.util.ImageUtils;
-import com.trichain.specialbuddy.dashBoard.ui.profile.ProfileFragment;
+import com.trichain.specialbuddy.chat.data.Configuration;
+import com.trichain.specialbuddy.chat.data.User;
+import com.trichain.specialbuddy.util.ImageUtils;
 import com.trichain.specialbuddy.databinding.ActivityOtherBinding;
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 import com.yarolegovich.lovelydialog.LovelyProgressDialog;
@@ -51,7 +50,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OtherActivity extends AppCompatActivity {
-//    private ProfileViewModel homeViewModel;
     private ActivityOtherBinding b;
 
     private static final String TAG = "OtherActivity";
@@ -85,8 +83,7 @@ public class OtherActivity extends AppCompatActivity {
         userDB.addValueEventListener(userListener);
         mAuth = FirebaseAuth.getInstance();
 
-        // Inflate the layout for this fragment
-//        View  = inflater.inflate(R.layout.fragment_info, container, false);
+
         context = this;
         avatar = (ImageView) findViewById(R.id.img_avatar);
         tvUserName = (TextView) findViewById(R.id.tv_username);
@@ -98,11 +95,9 @@ public class OtherActivity extends AppCompatActivity {
         tvUserName.setText(myAccount.name);
 
         recyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
-//        infoAdapter = new ProfileFragment.UserInfoAdapter(listConfig);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        recyclerView.setAdapter(infoAdapter);
 
         waitingDialog = new LovelyProgressDialog(context);
     }
@@ -113,7 +108,7 @@ public class OtherActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             if (data == null) {
-                Toast.makeText(context, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Pick an Image", Toast.LENGTH_LONG).show();
                 return;
             }
             try {
@@ -236,7 +231,6 @@ public class OtherActivity extends AppCompatActivity {
     private final ValueEventListener userListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            //Log.e(TAG, "onDataChange: " + dataSnapshot.getValue().toString());
             listConfig.clear();
             myAccount = dataSnapshot.getValue(User.class);
 
@@ -256,7 +250,6 @@ public class OtherActivity extends AppCompatActivity {
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
-            //Có lỗi xảy ra, không lấy đc dữ liệu
             Log.e(TAG, "loadPost:onCancelled", databaseError.toException());
         }
     };

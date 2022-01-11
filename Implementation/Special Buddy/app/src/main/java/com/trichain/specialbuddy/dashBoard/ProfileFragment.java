@@ -1,13 +1,17 @@
-package com.trichain.specialbuddy.chat.ui;
+package com.trichain.specialbuddy.dashBoard;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,11 +42,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.trichain.specialbuddy.R;
 import com.trichain.specialbuddy.chat.data.SharedPreferenceHelper;
-import com.trichain.specialbuddy.chat.data.StaticConfig;
 import com.trichain.specialbuddy.chat.data.Configuration;
 import com.trichain.specialbuddy.chat.data.User;
 import com.trichain.specialbuddy.chat.service.ServiceUtils;
 import com.trichain.specialbuddy.util.ImageUtils;
+import com.trichain.specialbuddy.databinding.FragmentProfileBinding;
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 import com.yarolegovich.lovelydialog.LovelyProgressDialog;
 
@@ -50,8 +55,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+public class ProfileFragment extends Fragment {
 
-public class UserProfileFragment extends Fragment {
+    private FragmentProfileBinding b;
+
+    private static final String TAG = "ProfileFragment";
     TextView tvUserName;
     ImageView avatar;
 
@@ -72,7 +80,7 @@ public class UserProfileFragment extends Fragment {
     private User myAccount;
     private Context context;
 
-    public UserProfileFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -81,18 +89,19 @@ public class UserProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    private ValueEventListener userListener = new ValueEventListener() {
+    private final ValueEventListener userListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            //Log.e(TAG, "onDataChange: " + dataSnapshot.getValue().toString());
             listConfig.clear();
             myAccount = dataSnapshot.getValue(User.class);
 
-            setupArrayListInfo(myAccount);
-            if(infoAdapter != null){
+            setUpUi(myAccount);
+            if (infoAdapter != null) {
                 infoAdapter.notifyDataSetChanged();
             }
 
-            if(tvUserName != null){
+            if (tvUserName != null) {
                 tvUserName.setText(myAccount.name);
             }
 
@@ -103,31 +112,35 @@ public class UserProfileFragment extends Fragment {
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
-            Log.e(UserProfileFragment.class.getName(), "loadPost:onCancelled", databaseError.toException());
+            Log.e(TAG, "loadPost:onCancelled", databaseError.toException());
         }
     };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        userDB = FirebaseDatabase.getInstance().getReference().child("user").child(StaticConfig.UID);
-        userDB.addListenerForSingleValueEvent(userListener);
+
+        b = FragmentProfileBinding.inflate(inflater, container, false);
+        View view = b.getRoot();
+        FirebaseApp.initializeApp(getActivity());
+//        FirebaseAuth.
+        userDB = FirebaseDatabase.getInstance().getReference().child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Log.e(TAG, "onCreateView: " + userDB.getRef().toString());
+        userDB.addValueEventListener(userListener);
         mAuth = FirebaseAuth.getInstance();
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_info, container, false);
         context = view.getContext();
         avatar = (ImageView) view.findViewById(R.id.img_avatar);
         avatar.setOnClickListener(onAvatarClick);
-        tvUserName = (TextView)view.findViewById(R.id.tv_username);
+        tvUserName = (TextView) view.findViewById(R.id.tv_username);
 
         SharedPreferenceHelper prefHelper = SharedPreferenceHelper.getInstance(context);
         myAccount = prefHelper.getUserInfo();
-        setupArrayListInfo(myAccount);
+        setUpUi(myAccount);
         setImageAvatar(context, myAccount.avata);
         tvUserName.setText(myAccount.name);
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.info_recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.info_recycler_view);
         infoAdapter = new UserInfoAdapter(listConfig);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -136,6 +149,12 @@ public class UserProfileFragment extends Fragment {
 
         waitingDialog = new LovelyProgressDialog(context);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        userDB.addListenerForSingleValueEvent(userListener);
     }
 
     private View.OnClickListener onAvatarClick = new View.OnClickListener() {
@@ -194,7 +213,7 @@ public class UserProfileFragment extends Fragment {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
 
                                     waitingDialog.dismiss();
                                     SharedPreferenceHelper preferenceHelper = SharedPreferenceHelper.getInstance(context);
@@ -208,7 +227,7 @@ public class UserProfileFragment extends Fragment {
                                             .show();
                                 }
                             }
-                         })
+                        })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
@@ -228,22 +247,57 @@ public class UserProfileFragment extends Fragment {
     }
 
 
-    public void setupArrayListInfo(User myAccount){
-        listConfig.clear();
-        Configuration userNameConfig = new Configuration(USERNAME_LABEL, myAccount.name, R.mipmap.ic_account_box);
-        listConfig.add(userNameConfig);
+    public void setUpUi(User myAccount) {
+        Log.e(TAG, "setUpUi: ");
+        b.tvUsername.setText(myAccount.name);
+        b.phoneTv.setText(myAccount.phone);
+        b.emailTv.setText(myAccount.email);
+        b.uploadTv.setText(myAccount.diary == null || myAccount.diary.isEmpty() ? "Diary Unavailable" : "Profile Diary of available(Upload)");
 
-        Configuration emailConfig = new Configuration(EMAIL_LABEL, myAccount.email, R.mipmap.ic_email);
-        listConfig.add(emailConfig);
+        b.phoneRV.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", myAccount.phone, null));
+            startActivity(intent);
+        });
 
-        Configuration resetPass = new Configuration(RESETPASS_LABEL, "", R.mipmap.ic_restore);
-        listConfig.add(resetPass);
+        b.mailCl.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL, myAccount.email);
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Buddies");
+            startActivity(intent);
+        });
+        b.edtProfileTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), EditProfileActivity.class));
+            }
+        });
+        b.fileCl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (myAccount.diary == null || myAccount.diary.isEmpty()) {
+                    Toast.makeText(context, "No diary uploaded", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(context, "Downloading", Toast.LENGTH_LONG).show();
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myAccount.diary));
+                request.setDescription("Downloading Diary");
+                request.setTitle("Diary...");
+                // in order for this if to run, you must use the android 3.2 to compile your app
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    request.allowScanningByMediaScanner();
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                }
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "name-of-the-file.ext");
 
-        Configuration signout = new Configuration(SIGNOUT_LABEL, "", R.mipmap.ic_power_settings);
-        listConfig.add(signout);
+                // get download service and enqueue file
+                DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                manager.enqueue(request);
+            }
+        });
     }
 
-    private void setImageAvatar(Context context, String imgBase64){
+    private void setImageAvatar(Context context, String imgBase64) {
         try {
             Resources res = getResources();
             Bitmap src;
@@ -255,53 +309,53 @@ public class UserProfileFragment extends Fragment {
             }
 
             avatar.setImageDrawable(ImageUtils.roundedImage(context, src));
-        }catch (Exception e){
+        } catch (Exception e) {
         }
     }
 
     @Override
-    public void onDestroyView (){
+    public void onDestroyView() {
         super.onDestroyView();
     }
 
     @Override
-    public void onDestroy (){
+    public void onDestroy() {
         super.onDestroy();
     }
 
-    public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.ViewHolder>{
+    public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.ViewHolder> {
         private List<Configuration> profileConfig;
 
-        public UserInfoAdapter(List<Configuration> profileConfig){
+        public UserInfoAdapter(List<Configuration> profileConfig) {
             this.profileConfig = profileConfig;
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public UserInfoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_info_item_layout, parent, false);
-            return new ViewHolder(itemView);
+            return new UserInfoAdapter.ViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(UserInfoAdapter.ViewHolder holder, int position) {
             final Configuration config = profileConfig.get(position);
             holder.label.setText(config.getLabel());
             holder.value.setText(config.getValue());
             holder.icon.setImageResource(config.getIcon());
-            ((RelativeLayout)holder.label.getParent()).setOnClickListener(new View.OnClickListener() {
+            ((RelativeLayout) holder.label.getParent()).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(config.getLabel().equals(SIGNOUT_LABEL)){
+                    if (config.getLabel().equals(SIGNOUT_LABEL)) {
                         FirebaseAuth.getInstance().signOut();
                         ServiceUtils.stopServiceFriendChat(getContext().getApplicationContext(), true);
                         getActivity().finish();
                     }
 
-                    if(config.getLabel().equals(USERNAME_LABEL)){
+                    if (config.getLabel().equals(USERNAME_LABEL)) {
                         View vewInflater = LayoutInflater.from(context)
-                                .inflate(R.layout.dialog_edit_username,  (ViewGroup) getView(), false);
-                        final EditText input = (EditText)vewInflater.findViewById(R.id.edit_username);
+                                .inflate(R.layout.dialog_edit_username, (ViewGroup) getView(), false);
+                        final EditText input = (EditText) vewInflater.findViewById(R.id.edit_username);
                         input.setText(myAccount.name);
                         new AlertDialog.Builder(context)
                                 .setTitle("Edit username")
@@ -310,7 +364,7 @@ public class UserProfileFragment extends Fragment {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         String newName = input.getText().toString();
-                                        if(!myAccount.name.equals(newName)){
+                                        if (!myAccount.name.equals(newName)) {
                                             changeUserName(newName);
                                         }
                                         dialogInterface.dismiss();
@@ -324,7 +378,7 @@ public class UserProfileFragment extends Fragment {
                                 }).show();
                     }
 
-                    if(config.getLabel().equals(RESETPASS_LABEL)){
+                    if (config.getLabel().equals(RESETPASS_LABEL)) {
                         new AlertDialog.Builder(context)
                                 .setTitle("Password")
                                 .setMessage("Are you sure want to reset password?")
@@ -346,8 +400,7 @@ public class UserProfileFragment extends Fragment {
             });
         }
 
-
-        private void changeUserName(String newName){
+        private void changeUserName(String newName) {
             userDB.child("name").setValue(newName);
 
 
@@ -356,7 +409,7 @@ public class UserProfileFragment extends Fragment {
             prefHelper.saveUserInfo(myAccount);
 
             tvUserName.setText(newName);
-            setupArrayListInfo(myAccount);
+            setUpUi(myAccount);
         }
 
         void resetPassword(final String email) {
@@ -418,14 +471,14 @@ public class UserProfileFragment extends Fragment {
             // each data item is just a string in this case
             public TextView label, value;
             public ImageView icon;
+
             public ViewHolder(View view) {
                 super(view);
-                label = (TextView)view.findViewById(R.id.tv_title);
-                value = (TextView)view.findViewById(R.id.tv_detail);
-                icon = (ImageView)view.findViewById(R.id.img_icon);
+                label = (TextView) view.findViewById(R.id.tv_title);
+                value = (TextView) view.findViewById(R.id.tv_detail);
+                icon = (ImageView) view.findViewById(R.id.img_icon);
             }
         }
 
     }
-
 }

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_my_profile"
-        android:name="com.trichain.specialbuddy.dashBoard.ui.profile.ProfileFragment"
+        android:name="com.trichain.specialbuddy.dashBoard.ProfileFragment"
         android:label="@string/my_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_contact_list"
-        android:name="com.trichain.specialbuddy.dashBoard.ui.contacts.ContactsFragment"
+        android:name="com.trichain.specialbuddy.dashBoard.ContactsFragment"
         android:label="@string/contacts_list"
         tools:layout="@layout/fragment_contacts" />
 
     <fragment
         android:id="@+id/nav_find_buddy"
-        android:name="com.trichain.specialbuddy.dashBoard.ui.MapsFragment"
+        android:name="com.trichain.specialbuddy.dashBoard.MapsFragment"
         android:label="@string/find_a_buddy"
         tools:layout="@layout/fragment_maps" />
     <fragment
@@ -29,17 +29,17 @@
         tools:layout="@layout/fragment_buddies_requests_sug" />
     <fragment
         android:id="@+id/nav_accessability"
-        android:name="com.trichain.specialbuddy.dashBoard.ui.EnableAccFragment"
+        android:name="com.trichain.specialbuddy.dashBoard.EnableAccFragment"
         android:label="@string/buddies_requests_and_suggestions"
         tools:layout="@layout/fragment_enable_acc" />
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.trichain.specialbuddy.dashBoard.ui.profile.LogoutFragment"
+        android:name="com.trichain.specialbuddy.dashBoard.LogoutFragment"
         android:label="Logout"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_file_complain"
-        android:name="com.trichain.specialbuddy.dashBoard.ui.FileComplainFragment"
+        android:name="com.trichain.specialbuddy.dashBoard.FileComplainFragment"
         android:label="File a Complain"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

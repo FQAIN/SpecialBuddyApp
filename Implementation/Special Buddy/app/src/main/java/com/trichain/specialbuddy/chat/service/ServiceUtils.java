@@ -14,8 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.trichain.specialbuddy.chat.data.SharedPreferenceHelper;
 import com.trichain.specialbuddy.chat.data.StaticConfig;
-import com.trichain.specialbuddy.chat.model.Friend;
-import com.trichain.specialbuddy.chat.model.ListFriend;
+import com.trichain.specialbuddy.chat.data.Friend;
+import com.trichain.specialbuddy.chat.data.ListFriend;
 
 import java.util.HashMap;
 

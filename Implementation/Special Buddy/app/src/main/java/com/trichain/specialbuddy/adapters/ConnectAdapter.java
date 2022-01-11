@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,14 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.trichain.specialbuddy.R;
 import com.trichain.specialbuddy.chat.data.StaticConfig;
-import com.trichain.specialbuddy.chat.model.ListFriend;
+import com.trichain.specialbuddy.chat.data.ListFriend;
 import com.trichain.specialbuddy.dashBoard.BuddiesRequestsSugFragment;
 import com.trichain.specialbuddy.databinding.ItemConnectBuddyBinding;
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 import com.yarolegovich.lovelydialog.LovelyProgressDialog;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,30 +77,6 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ConnectV
         h.b.txtName.setText(name);
         h.b.txtEmail.setText(email);
 
-//        ((View) h.b.txtName.getParent().getParent().getParent())
-//                .setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-////                        h.b.txtMessage.setTypeface(Typeface.DEFAULT);
-//                        h.b.txtName.setTypeface(Typeface.DEFAULT);
-//                        Intent intent = new Intent(context, ChatActivity.class);
-//                        intent.putExtra(StaticConfig.INTENT_KEY_CHAT_FRIEND, name);
-//                        ArrayList<CharSequence> idFriend = new ArrayList<CharSequence>();
-//                        idFriend.add(id);
-//                        intent.putCharSequenceArrayListExtra(StaticConfig.INTENT_KEY_CHAT_ID, idFriend);
-//                        intent.putExtra(StaticConfig.INTENT_KEY_CHAT_ROOM_ID, idRoom);
-//                        ChatActivity.bitmapAvataFriend = new HashMap<>();
-//                        if (!avata.equals(StaticConfig.STR_DEFAULT_BASE64)) {
-//                            byte[] decodedString = Base64.decode(avata, Base64.DEFAULT);
-//                            ChatActivity.bitmapAvataFriend.put(id, BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
-//                        } else {
-//                            ChatActivity.bitmapAvataFriend.put(id, BitmapFactory.decodeResource(context.getResources(), R.drawable.default_avata));
-//                        }
-//
-//                        mapMark.put(id, null);
-//                        fragment.startActivityForResult(intent, FriendsFragment.ACTION_START_CHAT);
-//                    }
-//                });
         h.b.connectBtn.setOnClickListener(v -> {
             h.b.connectBtn.setClickable(false);
             h.b.connectBtn.setVisibility(View.GONE);
@@ -112,107 +85,6 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ConnectV
 
             connectFriend(idFriendRemoval, h.b);
         });
-//        ((View) h.b.txtName.getParent().getParent().getParent())
-//                .setOnLongClickListener(new View.OnLongClickListener() {
-//                    @Override
-//                    public boolean onLongClick(View view) {
-//                        String friendName = (String)h.b.txtName.getText();
-//
-//                        new AlertDialog.Builder(context)
-//                                .setTitle("Delete Friend")
-//                                .setMessage("Are you sure want to delete "+friendName+ "?")
-//                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialogInterface, int i) {
-//                                        dialogInterface.dismiss();dialogWaitDeleting.setTitle("Deleting...")
-//                                                .setCancelable(false)
-//                                                .setTopColorRes(R.color.colorAccent)
-//                                                .show();
-//                                    }
-//                                })
-//                                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialogInterface, int i) {
-//                                        dialogInterface.dismiss();
-//                                    }
-//                                }).show();
-//
-//                        return true;
-//                    }
-//                });
-
-
-//        if (listFriend.getListFriend().get(position).message.text.length() > 0) {
-//            //h.b.txtMessage.setVisibility(View.VISIBLE);
-//            //h.b.txtTime.setVisibility(View.VISIBLE);
-//            if (!listFriend.getListFriend().get(position).message.text.startsWith(id)) {
-//                // h.txtMessage.setText(listFriend.getListFriend().get(position).message.text);
-//                // h.txtMessage.setTypeface(Typeface.DEFAULT);
-//                h.b.txtName.setTypeface(Typeface.DEFAULT);
-//            } else {
-//                // h.txtMessage.setText(listFriend.getListFriend().get(position).message.text.substring((id + "").length()));
-//                // h.txtMessage.setTypeface(Typeface.DEFAULT_BOLD);
-//                h.b.txtName.setTypeface(Typeface.DEFAULT_BOLD);
-//            }
-//            String time = new SimpleDateFormat("EEE, d MMM yyyy").format(new Date(listFriend.getListFriend().get(position).message.timestamp));
-//            String today = new SimpleDateFormat("EEE, d MMM yyyy").format(new Date(System.currentTimeMillis()));
-//            if (today.equals(time)) {
-//                //h.b.txtTime.setText(new SimpleDateFormat("HH:mm").format(new Date(listFriend.getListFriend().get(position).message.timestamp)));
-//            } else {
-//                //h.b.txtTime.setText(new SimpleDateFormat("MMM d").format(new Date(listFriend.getListFriend().get(position).message.timestamp)));
-//            }
-//        } else {
-//            // h.txtMessage.setVisibility(View.GONE);
-//            //h.b.txtTime.setVisibility(View.GONE);
-//            if (mapQuery.get(id) == null && mapChildListener.get(id) == null) {
-//                mapQuery.put(id, FirebaseDatabase.getInstance().getReference().child("message/" + idRoom).limitToLast(1));
-//                mapChildListener.put(id, new ChildEventListener() {
-//                    @Override
-//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                        HashMap mapMessage = (HashMap) dataSnapshot.getValue();
-//                        if (mapMark.get(id) != null) {
-//                            if (!mapMark.get(id)) {
-//                                listFriend.getListFriend().get(position).message.text = id + mapMessage.get("text");
-//                            } else {
-//                                listFriend.getListFriend().get(position).message.text = (String) mapMessage.get("text");
-//                            }
-//                            notifyDataSetChanged();
-//                            mapMark.put(id, false);
-//                        } else {
-//                            listFriend.getListFriend().get(position).message.text = (String) mapMessage.get("text");
-//                            notifyDataSetChanged();
-//                        }
-//                        listFriend.getListFriend().get(position).message.timestamp = (long) mapMessage.get("timestamp");
-//                    }
-//
-//                    @Override
-//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
-//                mapQuery.get(id).addChildEventListener(mapChildListener.get(id));
-//                mapMark.put(id, true);
-//            } else {
-//                mapQuery.get(id).removeEventListener(mapChildListener.get(id));
-//                mapQuery.get(id).addChildEventListener(mapChildListener.get(id));
-//                mapMark.put(id, true);
-//            }
-//        }
         if (listFriend.getListFriend().get(position).avata.equals(StaticConfig.STR_DEFAULT_BASE64)) {
             h.b.iconAvata.setImageResource(R.drawable.default_avata);
         } else {
@@ -229,7 +101,6 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ConnectV
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     if (dataSnapshot.getValue() != null && dataSnapshot.getKey().equals("isOnline")) {
                         Log.d("FriendsFragment add " + id, (boolean) dataSnapshot.getValue() + "");
-                        listFriend.getListFriend().get(position).status.isOnline = (boolean) dataSnapshot.getValue();
                         notifyDataSetChanged();
                     }
                 }
@@ -238,7 +109,6 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ConnectV
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                     if (dataSnapshot.getValue() != null && dataSnapshot.getKey().equals("isOnline")) {
                         Log.d("FriendsFragment change " + id, (boolean) dataSnapshot.getValue() + "");
-                        listFriend.getListFriend().get(position).status.isOnline = (boolean) dataSnapshot.getValue();
                         notifyDataSetChanged();
                     }
                 }
@@ -261,11 +131,7 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ConnectV
             mapQueryOnline.get(id).addChildEventListener(mapChildListenerOnline.get(id));
         }
 
-        if (listFriend.getListFriend().get(position).status.isOnline) {
-            h.b.iconAvata.setBorderWidth(10);
-        } else {
-            h.b.iconAvata.setBorderWidth(0);
-        }
+
     }
 
     @Override
@@ -275,12 +141,7 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ConnectV
     }
 
 
-    /**
-     * COnnect friend
-     *
-     * @param idFriend
-     * @param b
-     */
+
     private void connectFriend(final String idFriend, ItemConnectBuddyBinding b) {
         if (idFriend != null) {
 

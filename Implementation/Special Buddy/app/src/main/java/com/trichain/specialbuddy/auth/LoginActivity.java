@@ -37,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.trichain.specialbuddy.R;
 import com.trichain.specialbuddy.chat.data.SharedPreferenceHelper;
 import com.trichain.specialbuddy.chat.data.StaticConfig;
-import com.trichain.specialbuddy.chat.model.User;
+import com.trichain.specialbuddy.chat.data.User;
 import com.trichain.specialbuddy.dashBoard.DashBoard;
 import com.trichain.specialbuddy.databinding.ActivityLoginBinding;
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
@@ -46,8 +46,6 @@ import com.yarolegovich.lovelydialog.LovelyProgressDialog;
 import java.util.HashMap;
 import java.util.Objects;
 
-//import com.trichain.functionsphp.R;
-//import com.trichain.functionsphp.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding b;
@@ -136,7 +134,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        //Khoi tao dialog waiting khi dang nhap
         waitingDialog = new LovelyProgressDialog(this).setCancelable(false);
     }
 
@@ -149,7 +146,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void signUpRedirect(View v) {
         someActivityResultLauncher.launch(new Intent(LoginActivity.this, RegisterActivity.class));
-//        this.finish();
     }
     double mLat,mLong;
 
@@ -272,61 +268,6 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             waitingDialog.dismiss();
-                        }
-                    });
-        }
-
-        /**
-         * Action reset password
-         *
-         * @param email
-         */
-        void resetPassword(final String email) {
-            mAuth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            new LovelyInfoDialog(LoginActivity.this) {
-                                @Override
-                                public LovelyInfoDialog setConfirmButtonText(String text) {
-                                    findView(com.yarolegovich.lovelydialog.R.id.ld_btn_confirm).setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            dismiss();
-                                        }
-                                    });
-                                    return super.setConfirmButtonText(text);
-                                }
-                            }
-                                    .setTopColorRes(R.color.colorPrimary)
-                                    .setIcon(R.drawable.ic_pass_reset)
-                                    .setTitle("Password Recovery")
-                                    .setMessage("Sent email to " + email)
-                                    .setConfirmButtonText("Ok")
-                                    .show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            new LovelyInfoDialog(LoginActivity.this) {
-                                @Override
-                                public LovelyInfoDialog setConfirmButtonText(String text) {
-                                    findView(com.yarolegovich.lovelydialog.R.id.ld_btn_confirm).setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            dismiss();
-                                        }
-                                    });
-                                    return super.setConfirmButtonText(text);
-                                }
-                            }
-                                    .setTopColorRes(R.color.colorAccent)
-                                    .setIcon(R.drawable.ic_pass_reset)
-                                    .setTitle("False")
-                                    .setMessage("False to sent email to " + email)
-                                    .setConfirmButtonText("Ok")
-                                    .show();
                         }
                     });
         }
