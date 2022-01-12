@@ -44,11 +44,3 @@ Open the application, create an account. That's it.
 ![](https://img.shields.io/github/v/release/imshakil/BloodBank.svg) 
 ![](https://img.shields.io/github/issues/imshakil/BloodBank.svg) 
 
-
-# Database Snapshot
-Follow this link: https://github.com/imShakil/BloodBank/wiki/Databse-Snapshots
-(This project can be used for any educational purpose and can be changed or modified in need.<br><b> A star will be appriciated if you think it might be helpful.</b>)<br>
-
-# Changing Database and Package Name
-I got so many mails on about 'How to change Database link and Package Name'. So, Who has queries can watch this video: https://www.youtube.com/watch?v=nAzAo7shGKQ&ab_channel=AnubhavAnand
-
