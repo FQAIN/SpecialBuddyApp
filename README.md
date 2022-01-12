@@ -6,12 +6,22 @@
 # Features
 Easy contact between blood donor and blood recipient through this android application.<br>
 Included:
-- User Databases
-- User Login & Sign up
-- Donor Details
-- Finding blood group easily
-- Finding Near By Hospitals
-- Achievements & Rewards
+- Sign up as a buddy (Person with or without disability – 2 different roles)
+- Login
+- Logout
+- View Personal Profile
+- View Other Buddies Profile
+- Edit Profile
+- Add Diary to Profile
+- Find a Buddy via search on contact list
+- Search for a Buddy via Geo-Location Services
+- Chat with a buddy via message
+- Chat with a buddy via call
+- Enable Accessibility Features
+- Accept Buddy Requests
+- Decline Buddy Requests
+- Find Suggested Buddies near you
+- File Complaints and Report Abuse
        
 # Tools used
 - Firebase Database
