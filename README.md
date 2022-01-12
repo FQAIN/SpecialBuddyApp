@@ -44,3 +44,11 @@ Open the application, create an account. That's it.
 ![](https://img.shields.io/github/v/release/imshakil/BloodBank.svg) 
 ![](https://img.shields.io/github/issues/imshakil/BloodBank.svg) 
 
+# Where do i find the documentation for this project?
+
+You can view the project's dissertation/documetation for this project. To view the dissertation go to your chrome browser and copy-paste the viewing link:
+
+```
+https://github.com/FQAIN/SpecialBuddyApp/tree/main/Dissertation
+```
+
