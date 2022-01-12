@@ -61,7 +61,7 @@ Open the application, create an account. That's it.
 ![](https://img.shields.io/github/forks/imshakil/BloodBank.svg)
 ![](https://img.shields.io/github/tag/imshakil/BloodBank.svg) 
 ![](https://img.shields.io/github/v/release/imshakil/BloodBank.svg) 
-![](https://img.shields.io/github/issues/imshakil/BloodBank.svg) 
+![](https://img.shields.io/github/issues/fqain/SpecialBuddyApp) 
 
 # Where do i find the documentation for this project?
 
