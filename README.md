@@ -60,7 +60,7 @@ Open the application, create an account. That's it.
 ![](https://img.shields.io/github/stars/fqain?style=social)
 ![](https://img.shields.io/github/forks/fqain/SpecialBuddyApp?style=social)
 ![](https://img.shields.io/github/last-commit/fqain/SpecialBuddyApp) 
-![](https://img.shields.io/github/v/release/fqain/SpecialBuddyApp) 
+![](https://img.shields.io/github/languages/count/fqain/SpecialBuddyApp) 
 ![](https://img.shields.io/github/issues/fqain/SpecialBuddyApp) 
 
 # Where do i find the documentation for this project?
