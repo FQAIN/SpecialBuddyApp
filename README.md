@@ -1,7 +1,16 @@
 # My Final Year Project
 
 # About
-“Blood Point” is an android application to collect or donate blood easily. Users who have an android phone & active internet connection can contact and start searching for a donor easily through this application. The purpose of this application is to help people belonging to rural areas.
+The reason for this Project’s development was to assist people with various disabilities (physical
+and mental) and help them socially interact with people without any disabilities using a real time
+buddy mobile application. The aim is to create an android mobile based application that would
+help people with disabilities to overcome their solitude and to interact with peers or buddies
+without much difficulty using a social online platform. This project will consist of an Android
+Application, a Firebase Database, a Chat Service, and a Geo-Location Service, while including
+accessibility features to cater for various (visual, hearing, etc.) impairments. As a huge issue among
+people with disabilities is social loneliness and solitude. The app will be able to buddy a person(s)
+with disabilities and a person(s) without disability together which will allow them to communicate
+via the mobile application.
 
 # Features
 Easy contact between blood donor and blood recipient through this android application.<br>
