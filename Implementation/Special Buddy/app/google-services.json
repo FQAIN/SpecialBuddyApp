@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:296549609665:android:4cdbc71da774a8875fa440",
+        "mobilesdk_app_id": "1:296549609665:android:79509f5fd35f09195fa440",
         "android_client_info": {
-          "package_name": "com.trichain.disabilitychat"
+          "package_name": "com.fyp.specialbuddy"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "296549609665-5q1dd8j3j02inlop67frn8u747lag1db.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fyp.specialbuddy",
+            "certificate_hash": "3ece02b07be06e8586f2e61975cabb01821ffc13"
+          }
+        },
         {
           "client_id": "296549609665-9j87q9d2diimja9bn4tu0qt9e3p7bp0d.apps.googleusercontent.com",
           "client_type": 3
@@ -21,36 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBsDT8HwmfNzmLsTsuykH_rsALhP_aPJ1k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "296549609665-9j87q9d2diimja9bn4tu0qt9e3p7bp0d.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:296549609665:android:6071cc64da39a6685fa440",
-        "android_client_info": {
-          "package_name": "com.trichain.specialbuddy"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "296549609665-9j87q9d2diimja9bn4tu0qt9e3p7bp0d.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBsDT8HwmfNzmLsTsuykH_rsALhP_aPJ1k"
+          "current_key": "AIzaSyBMpw0byUcy96iuwujr4hRI6pd-DrTaWaQ"
         }
       ],
       "services": {

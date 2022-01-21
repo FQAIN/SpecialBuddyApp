@@ -7,39 +7,39 @@
 
     <fragment
         android:id="@+id/nav_my_profile"
-        android:name="com.trichain.specialbuddy.dashBoard.ProfileFragment"
+        android:name="com.fyp.specialbuddy.dashBoard.ProfileFragment"
         android:label="@string/my_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_contact_list"
-        android:name="com.trichain.specialbuddy.dashBoard.ContactsFragment"
+        android:name="com.fyp.specialbuddy.dashBoard.ContactsFragment"
         android:label="@string/contacts_list"
         tools:layout="@layout/fragment_contacts" />
 
     <fragment
         android:id="@+id/nav_find_buddy"
-        android:name="com.trichain.specialbuddy.dashBoard.MapsFragment"
+        android:name="com.fyp.specialbuddy.dashBoard.MapsFragment"
         android:label="@string/find_a_buddy"
         tools:layout="@layout/fragment_maps" />
     <fragment
         android:id="@+id/nav_buddy_request"
-        android:name="com.trichain.specialbuddy.dashBoard.BuddiesRequestsSugFragment"
+        android:name="com.fyp.specialbuddy.dashBoard.BuddiesRequestsSugFragment"
         android:label="@string/buddies_requests_and_suggestions"
         tools:layout="@layout/fragment_buddies_requests_sug" />
     <fragment
         android:id="@+id/nav_accessability"
-        android:name="com.trichain.specialbuddy.dashBoard.EnableAccFragment"
+        android:name="com.fyp.specialbuddy.dashBoard.EnableAccFragment"
         android:label="@string/buddies_requests_and_suggestions"
         tools:layout="@layout/fragment_enable_acc" />
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.trichain.specialbuddy.dashBoard.LogoutFragment"
+        android:name="com.fyp.specialbuddy.dashBoard.LogoutFragment"
         android:label="Logout"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_file_complain"
-        android:name="com.trichain.specialbuddy.dashBoard.FileComplainFragment"
+        android:name="com.fyp.specialbuddy.dashBoard.FileComplainFragment"
         android:label="File a Complain"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
