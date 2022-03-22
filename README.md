@@ -35,6 +35,8 @@ Included:
 # Tools used
 - Firebase Database
 - Firebase Authentication
+- Firebase Storage
+- Firebase Cloud Messaging
 - Google Maps API
 - Android Studio IDE
 - Android version 4.2 (17) Jelly Bean
