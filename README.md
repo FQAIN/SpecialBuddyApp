@@ -12,6 +12,17 @@ people with disabilities is social loneliness and solitude. The app will be able
 with disabilities and a person(s) without disability together which will allow them to communicate
 via the mobile application.
 
+<table border="0">
+ <tr>
+    <td><b style="font-size:30px">Title</b></td>
+    <td><b style="font-size:30px">Title 2</b></td>
+ </tr>
+ <tr>
+    <td>Lorem ipsum ...</td>
+    <td>Lorem ipsum ...</td>
+ </tr>
+</table>
+
 # Features
 Here are the functions that the Author managed to implement during the implementation phase of the Final Year Project<br>
 Functions Included:
