@@ -13,8 +13,8 @@ with disabilities and a person(s) without disability together which will allow t
 via the mobile application.
 
 # Features
-Easy contact between blood donor and blood recipient through this android application.<br>
-Included:
+Here are the functions that the Author managed to implement during the implementation phase of the Final Year Project<br>
+Functions Included:
 - Sign up as a buddy (Person with or without disability – 2 different roles)
 - Login
 - Logout
