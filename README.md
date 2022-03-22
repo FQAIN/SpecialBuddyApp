@@ -18,8 +18,8 @@ via the mobile application.
     <td><b style="font-size:30px">QR Code</b></td>
  </tr>
  <tr>
-    <td><img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Screenshot%202021-10-04%20061034.png" alt="Splash Screen" width="100" height="200" />  </td>
-    <td><img src="Photos%20of%20Application/qr-code.png" alt="Splash Screen" width="100" height="200" /></td>
+    <td><img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Screenshot%202021-10-04%20061034.png" alt="Splash Screen" width="300" height="400" />  </td>
+    <td><img src="Photos%20of%20Application/qr-code.png" alt="Splash Screen" width="300" height="400" /></td>
  </tr>
 </table>
 
