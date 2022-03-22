@@ -45,7 +45,7 @@ Included:
 You can install this application to test on your android smartphone. To download the signed application go to your chrome browser and copy-paste the download link:
 
 ```
-https://github.com/FQAIN/SpecialBuddyApp/blob/main/Special%20Buddy%20App.apk
+https://github.com/FQAIN/SpecialBuddyApp/tree/main/APK%20Run%20File
 ```
 
 Download will be started automatically. After then install it on your android device.
