@@ -54,7 +54,7 @@ Download will be started automatically. After then install it on your android de
 Open the application, create an account. That's it.
 
 
-# Preview:
+<!-- # Preview:
 <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture1.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture2.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture3.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture4.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture5.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture6.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture7.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture8.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture9.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture10.png" alt="Splash Screen" width="100" height="200" /> <img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Picture11.png" alt="Splash Screen" width="100" height="200" /> 
 
 
@@ -63,7 +63,7 @@ Open the application, create an account. That's it.
 ![](https://img.shields.io/github/forks/fqain/SpecialBuddyApp?style=social)
 ![](https://img.shields.io/github/last-commit/fqain/SpecialBuddyApp) 
 ![](https://img.shields.io/github/languages/count/fqain/SpecialBuddyApp) 
-![](https://img.shields.io/github/issues/fqain/SpecialBuddyApp) 
+![](https://img.shields.io/github/issues/fqain/SpecialBuddyApp)  -->
 
 # Where do i find the documentation for this project?
 
