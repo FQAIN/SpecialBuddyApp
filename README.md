@@ -68,6 +68,6 @@ Open the application, create an account. That's it.
 You can view the project's dissertation/documetation for this project. To view the dissertation go to your chrome browser and copy-paste the viewing link:
 
 ```
-https://github.com/FQAIN/SpecialBuddyApp/tree/main/Dissertation
+https://github.com/FQAIN/SpecialBuddyApp/tree/main/Final%20Year%20Project%20Dissertation
 ```
 
