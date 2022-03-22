@@ -14,12 +14,12 @@ via the mobile application.
 
 <table border="0">
  <tr>
-    <td><b style="font-size:30px">Title</b></td>
-    <td><b style="font-size:30px">Title 2</b></td>
+    <td><b style="font-size:30px">Logo</b></td>
+    <td><b style="font-size:30px">QR Code</b></td>
  </tr>
  <tr>
-    <td>Lorem ipsum ...</td>
-    <td>Lorem ipsum ...</td>
+    <td><img src="https://github.com/FQAIN/SpecialBuddyApp/blob/main/Photos%20of%20Application/Screenshot%202021-10-04%20061034.png" alt="Splash Screen" width="100" height="200" />  </td>
+    <td><img src="Photos%20of%20Application/qr-code.png" alt="Splash Screen" width="100" height="200" /></td>
  </tr>
 </table>
 
